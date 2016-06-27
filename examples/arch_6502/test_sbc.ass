@@ -1,0 +1,100 @@
+H1	BYTE	$00
+L1	BYTE	$00
+H2	BYTE	$00
+L2	BYTE	$00
+H3	BYTE	$00
+L3	BYTE	$00
+	;
+;	ORG	$10
+	JMP	TEST
+ERROR	BRK
+;
+TEST:
+;
+; with borrow, positive result
+;
+	; 5 - 3 = 2
+	; C=1 ->no borrow
+T1	LDA	#$05
+	SEC	
+	SBC	#$03
+	; C still 1: result is in A: 2
+	BCC	ERROR
+	CMP	#$02
+	BNE	ERROR
+;
+; with borrow, negative result
+;
+	; 5- 6 = -1
+	; C=1 -> no borrow
+T2	LDA	#$05
+	SEC
+	SBC	#$06
+	 ; C=0, result in A: -1
+	BCS	ERROR
+	CMP	#$FF
+	BNE	ERROR
+;
+; double precision, positive result
+; 512 - 255 = 257
+; 0x0200 - 00x0FF = 0x0101
+; C=1  
+T3	LDA	#$02
+	STA	H1
+	LDA	#$00
+	STA	L1
+	LDA	#$00
+	STA	H2
+	LDA	#$FF
+	STA	L2
+	;
+	SEC
+	LDA	L1
+	SBC	L2
+	STA	L3
+	LDA	H1
+	SBC	H2
+	STA	H3
+	; L3 = H3 = 0x01
+	; C=1  
+	BCC	ERROR
+	LDA	H3
+	CMP	#$01
+	BNE	ERROR
+	LDA	L3
+	CMP	#$01
+	BNE	ERROR
+;
+; double precision; negative result
+; 255  - 512 = -257
+; 0x00FF -0x0200 = 0xFEFF
+; C=0
+T4	LDA	#$00
+	STA	H1
+	LDA	#$FF
+	STA	L1
+	LDA	#$02
+	STA	H2
+	LDA	#$00
+	STA	L2
+	;
+	SEC
+	LDA	L1
+	SBC	L2
+	STA	L3
+	LDA	H1
+	SBC	H2
+	STA	H3
+	; H3 = 0xFE L3 = 0xFF 
+	; C=0
+	BCS	ERROR
+	LDA	H3
+	CMP	#$FE
+	BNE	ERROR
+	LDA	L3
+	CMP	#$FF
+; branch to ERROR exceeds addressing limit
+	BNE	ERROR2
+	END
+ERROR2:
+	BRK

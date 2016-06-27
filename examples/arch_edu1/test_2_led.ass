@@ -1,0 +1,57 @@
+	.CODE	100
+	MOVA	#0
+	STA	50
+	MOVA	#0
+	STA	60
+;
+	MOVA	#-128
+	STA	50
+	MOVA	#-128
+	STA	60
+;
+	MOVA	#64
+	STA	50
+	MOVA	#64
+	STA	60
+;
+	MOVA	#32
+	STA	50
+	MOVA	#32
+	STA	60
+;
+	MOVA	#16
+	STA	50
+	MOVA	#16
+	STA	60
+;
+	MOVA	#08
+	STA	50
+	MOVA	#08
+	STA	60
+;
+	MOVA	#04
+	STA	50
+	MOVA	#04
+	STA	60
+;
+	MOVA	#02
+	STA	50
+	MOVA	#02
+	STA	60
+;
+	MOVA	#01
+	STA	50
+	MOVA	#01
+	STA	60
+;
+	MOVA	#0
+	STA	50
+	MOVA	#0
+	STA	60
+;
+	MOVA	#-1
+	STA	50
+	MOVA	#-1
+	STA	60
+	.END
+	

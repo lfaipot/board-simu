@@ -1,0 +1,20 @@
+	;
+	SEC	; set C
+	CLC	; clear C
+	SEC	; set C
+	CLC	; clear C
+;
+	SEI	; set I
+	CLI	; clear I
+	SEI	; set I
+	CLI	; clear I
+;	
+	LDA	#$7F
+	ADC	#$01
+	CLV	; set O
+;
+;	SED	; set D
+	CLD	; clear D
+;	SED	; set D
+	CLD	; clear D
+	END

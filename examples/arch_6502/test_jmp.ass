@@ -1,0 +1,9 @@
+	ORG $0010
+	LDA #$01
+	STA $f0
+	LDA #$cc
+	STA $f1
+;dereferences to $01cc
+	JMP ($00f0) 
+	ORG $01cc
+	END

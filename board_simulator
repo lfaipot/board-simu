@@ -1,0 +1,13 @@
+# determine location of current script
+ROOTDIR=`dirname $0`
+SRC=$ROOTDIR/src
+#
+# configure PYTHON path to all required directories
+#
+export PYTHONPATH=$SRC:$SRC/Ui:$SRC/hardware:$SRC/hardware/arch:$SRC/hardware/device:$PYTHONPATH
+echo $PYTHONPATH
+
+#
+# let's go
+#
+python $SRC/boardSimu.py

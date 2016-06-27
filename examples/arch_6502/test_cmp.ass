@@ -1,0 +1,21 @@
+; comparison
+NEG	BYTE	$F0
+POS	BYTE	$10
+ZERO	BYTE	$00
+	ORG $10
+;
+	LDA	#$00
+	CMP	NEG
+	CMP	POS
+	CMP	ZERO
+;
+ 	LDA	#$80
+	CMP	NEG
+	CMP	POS
+	CMP	ZERO
+;
+	LDA	#$7F
+	CMP	NEG
+	CMP	POS
+	CMP	ZERO
+	END

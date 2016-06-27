@@ -1,0 +1,14 @@
+	ORG $0600
+	LDY 	#$01
+	LDA 	#$03
+	STA 	$01
+	LDA 	#$07
+	STA 	$02
+	LDX 	#$0a
+	STX 	$0308
+	LDA 	($01),Y
+	LDA 	$0308
+	CMP	#$0a
+	BEQ	FIN
+	BRK
+FIN	END

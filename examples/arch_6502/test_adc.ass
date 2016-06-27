@@ -1,0 +1,134 @@
+H1	BYTE	$00
+L1	BYTE	$00
+H2	BYTE	$00
+L2	BYTE	$00
+H3	BYTE	$00
+L3	BYTE	$00
+	ORG 	$0010
+	JMP	TEST
+ERROR	BRK
+;
+TEST:
+; A=13/$0D  M=211/$D3 C=1
+; -> 225/$E1, C=0
+T1	LDA	#$0D
+	SEC
+	ADC	#$D3
+	BCS	ERROR
+	CMP	#$E1
+	BNE	ERROR
+;
+; A=254/$FE M=6/$06 C=1
+; -> 05/$05 C=1  (equiv to 256 + 5= 261)
+T2	LDA	#$FE
+	SEC
+	ADC	#$06
+	BCC	ERROR
+	CMP	#$05
+	BNE	ERROR
+;
+; double precision, no carry from low order
+; 258/$0102 + 4112/$1010 C=0
+; -> 4370/$1112
+T3	CLC
+	LDA	#$02
+	ADC	#$10
+	STA	L3
+	LDA	#$01
+	ADC	#$10
+	STA	H3
+	BCS	ERROR
+	LDA	L3
+	CMP	#$12
+	BNE	ERROR
+	LDA	H3
+	CMP	#$11
+	BNE	ERROR
+;
+; double precision: with carry from low order
+; 384/$$0180 + 128/$0080
+; -> 512/0200  C=0 
+T4	CLC
+	LDA	#$80
+	ADC	#$80
+	STA	L3
+	LDA	#$01
+	ADC	#$00
+	STA	H3
+	BCS	ERROR
+	LDA	H3
+	CMP	#$02
+	BNE	ERROR
+	LDA	L3
+	CMP	#$00
+	BNE	ERROR
+;
+; 2 positives with no overflow
+; 5/$05 + 7/$07
+; -> 12/$0C C=0 O=0
+T5	CLC
+	LDA	#$05
+	ADC	#$07
+	BVS	ERROR
+	BCS	ERROR
+	CMP	#$0C
+	BNE	ERROR
+;
+; 2 positives with overflow
+; 127/$7F + 2/$02
+; -> -127/$81 C=0 O=1
+T6	CLC
+	LDA	#$7F
+	ADC	#$02
+	BVC	ERROR
+	BCS	ERROR
+	CMP	#$81
+	BNE	ERROR
+;
+; positive and negative with positive result
+; 5/$05 + -3/$FD
+; -> 2/$02  C=1 O=0
+T7	CLC
+	LDA	#$05
+	ADC	#$FD
+	BCC	ERROR
+	BVS	ERROR
+	CMP	#$02
+	BNE	ERROR
+;
+; positive and negative with negative result
+; 5/$05 + -7/$F9
+; -> -2/$FE C=0 O=0
+T8	CLC
+	LDA	#$05
+	ADC	#$F9
+	BCS	ERROR2
+	BVS	ERROR2
+	CMP	#$FE
+	BNE	ERROR2
+;
+; 2 negatives without overflow
+; -5/$FB + -7/$F9
+; -> -12/$FE C=1 O=0
+T9	CLC
+	LDA	#$FB
+	ADC	#$F9
+	BCC	ERROR2
+	BVS	ERROR2
+	CMP	#$F4
+	BNE	ERROR2
+;
+; 2 negatives with overflow
+; -66/$BE + -65/$BF
+; -> 125/$7D C=1 O=1
+T10	CLC
+	LDA	#$BE
+	ADC	#$BF
+	BCC	ERROR2
+	BVC	ERROR2
+	CMP	#$7D
+	BNE	ERROR2
+;
+	END
+ERROR2:
+	BRK

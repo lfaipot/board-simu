@@ -1,0 +1,4 @@
+.DATA 0
+.CODE 100
+JMP   120
+.END

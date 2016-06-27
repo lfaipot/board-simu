@@ -1,0 +1,26 @@
+	.DATA	0
+	.CODE	100
+; 0 -> -1/FF
+	MOVA	#0
+	DEC	A
+	STA	10
+; -1/FF -> 0 
+	LDA	10
+	MOVB	#1
+	ADD	A
+	STA	12
+; 127/7F -> -128/80
+	MOVA	#127
+	MOVB	#1
+	ADD	A
+	STA	14
+; -128/80 -> -127/81
+	LDA	14
+	MOVB	#1
+	ADD	A
+	STA 	16
+; -128/80 -> 127/7F
+	LDA	14
+	DEC 	A
+	STA	18
+	.END

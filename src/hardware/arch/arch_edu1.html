@@ -1,0 +1,117 @@
+<html>
+<head>
+  <title>Assembleur EDU1</title>
+</head>
+<body> 
+	Cet assembleur a &eacute;t&eacute; cr&eacute;&eacute; pour des besoins &eacute;ducatifs et ne correspond &agrave; aucun processeur connu.
+	Il est d&eacute;riv&eacute; d'un exemple d'assembleur (r&eacute;f&eacute;rence &aacute; venir).
+
+  <h2>Adresses</h2>
+  Les adresses sont cod&eacute;es sur 8 bits.
+
+  <h2>Syntaxe<h2>
+  
+    <h3>Valeurs num&eacute;riques</h3>
+     Les valeurs num&eacute;riques sont cod&eacute;es en d&eacute;cimal
+    <ul>
+      <li>Les constantes sont pr&eacute;c&eacute;d&eacute;es par le symbole # dans la partie instruction
+      <li>les adresses ne sont pr&eacute;c&eacute;d&eacute;es par aucun symbole
+    </ul> 
+    Exemple:
+    <pre>
+    	LDA   10  ; charge A avec le contenu de l'adresse 10
+    	MOVA  #10 ; charge A avec la valeur 10
+    </pre>
+    
+    <h3>D&eacute;finition de donn&eacute;es</h3>
+	On donne l'adresse suivie de la valeur initiale.<br>
+	Exemple
+	<pre>
+	     10 20
+	</pre>
+	initialise la zone m&eacute;moire &agrave; l'adresse 10 avec la valeur 20.<br>
+	<br>
+	On peut faire pr&eacute;c&eacute;der la d&eacute;finition par un label afin de faciliter son usage: utilisation du nom de la variable au lieu de son adresse.
+	<pre>
+	VAR	10 20
+	...
+	LDA	VAR
+	</pre>
+ 
+  <h2>Registres</h2>
+  L'assembleur comporte uniquement 2 registres: A et B
+  <h2>Instructions</h2>
+	Il comporte les instructions suivantes:
+    <table border=1>
+    <tr>
+    	<th>Instruction</th><th>Operande</th><th>Opcode</th><th>Explication</th>
+    </tr>
+    <tr>
+  		<td>LDA</td><td>"mem"</td><td>0x01</td><td>charge le registre A avec le contenu de l'adresse "mem"</td>
+  	</tr>
+    <tr>
+      	<td>LDB</td><td>"mem"</td><td>0x02</td><td>similaire pour le registre B</td>
+  	</tr>
+    <tr>
+  		<td>STA</td><td>"mem"</td><td>0x03</td><td>stocke le contenu du registre A &agrave; l'adresse "mem"</td>
+  	</tr>
+    <tr>
+  		<td>STB</td><td>"mem"</td><td>0x04</td><td>similaire pour le registre B</td>
+  	</tr>
+    <tr>
+  		<td>ADD</td><td>A | B</td><td>0x05</td><td>additionne A et B et stocke le r&eacute;sultat dans le registre indiqu&eacute; (A ou B)</td>	
+  	</tr>
+    <tr>
+  		<td>DEC</td><td>A | B</td><td>0x06</td><td>decremente de 1 le registre indiqu&eacute;</td>
+  	</tr>
+    <tr>
+  		<td>MOVA</td><td>#val</td><td>0x07</td><td>stocke la valeur <val> dans le registre A</td>
+  	</tr>
+    <tr>
+  		<td>MOVB</td><td>#val</td><td>0x08</td><td>similaire pour le registre B</td>
+  	</tr>
+    <tr>
+  		<td>JMP</td><td>addr</td><td>0x09</td><td>saute &agrave; l'adresse addr</td>	
+  	</tr>
+    <tr>
+  		<td>JMPZ</td><td>addr</td><td>0x0a</td><td>saute &agrave; l'adresse "addr si le registre A contient 0</td>
+  	</tr>
+</table>
+
+	<h2>Syntaxe</h2>
+		<h3>Commentaire</h3>
+On peut rajouter un commentaire en le faisant pr&eacute;c&eacute;dant par un point-virgule.
+Le reste de la ligne est ignor&eacute;.
+
+		<h3>Directives</h3>
+3 directives ont &eacute;t&eacute; ajout&eacute;es par rapport &agrave; l'assembleur d&eacute;fini
+pour permettre l'utilisation de l'assembleur dans un "simulateur" :
+<ul>
+  <li>.DATA<br>
+   &agrave; placer avant la d&eacute;finition des donn&eacute;es (facultatif)<br>
+   permet d'indiquer le d&eacute;but de la zone de donn&eacute;es
+  <li>.CODE "addr"<br>
+  &agrave; placer avant la premi&egrave;re instruction. 
+  Permet d'indiquer l'adresse de d&eacute;but de stockage du code et
+  &eacute;vite que le code "bouge" quand on rajoute des donn&eacute;es (utile si les labels ne sont pas utilis&eacute;s).
+  <li>.END<br>
+  indique la fin des instructions afin d'&eacute;viter l'ex&eacute;cution de zone m&eacute;moire sans code (opcode '0xff' ajout&eacute;)
+</ul>
+  
+     <h3>Label</h3>
+     On peut d&eacute;finir des labels afin de r&eacute;f&eacute;rencer une instruction particuli&egrave;re et &eacute;viter d'avoir &agrave; calculer son adresse.
+     Le label peut pr&eacute;c&eacute;d&eacute; une instruction ou &ecirc;tre sur une ligne &agrave; part. Dans ce dernier cas, il doit &ecirc;tre suivi de ":".<br>
+     <pre>
+     	LDA  VAR
+     	JMPZ ZERO
+     	...
+  ZERO:
+        DEC  A
+     </pre>
+     ou
+     <pre>
+     	LDA  VAR
+        JMPZ ZERO
+        ...
+  ZERO  DEC  A
+     </pre>

@@ -1,0 +1,7 @@
+	.DATA 	0
+	10      99	
+	.CODE	100
+	LDA 	10
+; write data replacing instruction
+	STA	100
+	JMP	100

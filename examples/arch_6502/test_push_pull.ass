@@ -1,0 +1,9 @@
+	LDA	#$10
+	PHA
+	LDA	$FF
+	PLA	
+	LDA	#$FF
+	PHP
+	LDA	#$00
+	PLP
+	END

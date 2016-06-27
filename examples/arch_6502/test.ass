@@ -1,0 +1,6 @@
+	ORG	$0010
+	; immediate
+	LDA	#$7F
+	ADC	#$01
+
+

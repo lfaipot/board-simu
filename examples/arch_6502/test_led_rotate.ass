@@ -1,0 +1,27 @@
+	ORG	$FF00
+; force LED var at xFF00 (Led input)
+LED	BYTE	$00
+; load code at $0100
+	ORG	$0100
+; clear all leds: write zero
+	LDA	#$00
+	STA	LED
+; load #$80 and shift right 7 times
+	LDA	#$80
+	LDX	#$07
+LOOP	STA	LED
+; check end of loop
+	CPX	#$00
+	BEQ	DONE
+; decrement loop indicator in X
+	DEX
+; clear Carry to avoid introducting a 1 while rotating
+	CLC
+; shift A right
+	ROR	A
+	JMP	LOOP
+DONE:
+; set all leds on
+	LDA	#$FF
+	STA	LED
+	END

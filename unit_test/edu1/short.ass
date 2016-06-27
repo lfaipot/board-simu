@@ -1,0 +1,9 @@
+	.DATA 0
+	10	10
+	.CODE	100
+	LDA 	10
+	LDA 	10
+	LDA 	10
+	LDA 	10
+	JMP 100
+	.END

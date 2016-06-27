@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <title>Board Simulator - Release Notes</title>
+  </head>
+  <body>
+  
+<h1>Board Simulator: Release notes</h1>
+ <ul>
+   <li><a href="#version_1.0">Version 1.0</a>
+   <li><a href="#version_0.5">Version 0.5</a>
+   <li><a href="#version_0.4">Version 0.4</a>
+   <li><a href="#version_0.3">version 0.3</a>
+ </ul>
+  
+<h2><a name="version_1.0">Version 1.0</a></h2>
+<ul>
+  <li>Enhancement
+    <ul>
+      <li>"Run" slider: change of meaning to make it more intuitive. Previously adjustment of sleep period (faster on the left),
+        now adjustement of speed (faster on the right)
+      <li>Change some values of EDU opcodes
+          <ul>
+          	  <li>MOVA and MOVB before JMP and JMPZ (needed to comply with educational documents)</li>
+          	  <li>Opcode values added in EDU processor information</li>
+          </ul>
+    </ul>
+  </li>
+  <li>Bug Fixes
+    <ul>
+      <li>Enable "Save As" when a file is opened (can be saved with another file name)
+    </ul>
+  </li>
+</ul>
+
+<h2><a name="version_0.5">Version 0.5</a></h2>
+<ul>
+  <li>Bug Fixes
+    <ul>
+      <li>Memory content of address was displayed at address + 1
+    </ul>
+  </li>
+</ul>
+
+<h2><a name="version_0.4">Version 0.4</a></h2>
+<ul>
+  <li>General changes
+    <ul>
+      <li>Improvement of user interface: better window management (resizing), definition of tool tips.
+      <li>Help added: displayed various helps (board, architecture, release notes) into browser.
+      <li>Board: radio button to display addresses in hexadecimal.
+      <li>Code re-design (to better support of new assembly language)
+    </ul>
+  <li>6502
+    <ul>
+      <li>Fixes: errors in operand list for some opcodes, execution errors.
+      <li>Important: testing of instructions still not exhaustive.
+    </ul>
+  </li>
+</ul>
+
+<h2><a name="version_0.3">Version 0.3</a></h2>
+<ul>
+  <li>General changes
+    <ul>
+      <li>New assembly language: 6502
+    </ul>
+  <li>Edu1
+    <ul>
+     <li>support of labels: before an instruction or on a separate line
+       <pre>
+LABEL1:
+        JMPZ LABEL2
+LABEL2	DEC  A
+       </pre>
+    </ul>
+</ul>
+</body>
+</html>

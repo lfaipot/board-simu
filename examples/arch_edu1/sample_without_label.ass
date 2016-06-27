@@ -1,0 +1,24 @@
+; do nothing: just to test instructions and comment removal
+	.DATA
+	10 	5	; set value 5 at address 10
+	20 	10
+	.CODE 	100
+; load A from @10
+	LDA 	10 
+; branch at the end if A = 0
+	JMPZ 	120
+; A = A - 1
+	DEC 	A
+; store A in @10
+	STA 	10
+; load B from @20
+	LDB 	20
+; B = B - 1
+	DEC 	B
+; store B in @20
+	STB 	20
+	MOVA	#10
+	MOVB	#20
+; loop at the beginning
+	JMP 	100
+	.END

@@ -1,0 +1,16 @@
+; check only syntax analyzis 
+; execution causes Out of Memory exception
+SBC #$44
+SBC $44
+SBC $44,X
+SBC $4400
+SBC $4400,X
+SBC $4400,Y
+SBC ($44,X)
+SBC ($44),Y
+LABEL	NOP
+SBC LABEL
+SBC LABEL,X
+SBC LABEL,Y
+SBC (LABEL,X)
+SBC (LABEL),Y

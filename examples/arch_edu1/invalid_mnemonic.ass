@@ -1,0 +1,35 @@
+	.DATA
+	11 	1
+	12 	16
+	.CODE 	100
+;A reçoit 1 et B reçoit 1
+	LDA 	11
+	LDB 	11
+;on place le contenu de A à l'adresse 14
+	STA 	14
+;A + B -> A
+	ADD 	A
+;ce résultat est placé à l'adresse 13
+	STA 	13
+;A reçoit le compteur de boucle
+	LDA 	12
+;on décrémente ce compteur
+	DEC 	A
+; si le compteur est nul on arrête
+	JMZ 	126
+;sinon on le range à l'adresse 12
+	STA 	12
+;on reprend le contenu (A+B) de l'adresse 13
+	LDA	13
+;B reçoit le contenu de l'adresse 14 ( ancien A)
+	LDB 	14
+;on place le contenu de A à l'adresse 1
+	STA 	14
+;A + B -> A
+	ADD 	A
+;on boucle tant que le compteur n'est pas zéro
+	JMP 	108
+; on écrit le dernier terme à l'adresse 15
+	STA 	15
+	.END
+

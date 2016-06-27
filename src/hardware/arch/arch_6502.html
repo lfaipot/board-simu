@@ -1,0 +1,41 @@
+<html>
+<head>
+  <title>Information about 6502</title>
+</head>
+
+<body>
+  <h2>6502: specific addons</h2>
+    <h3>Numeric value</h3>
+   	Although it is the common usage for 6502, a reminder about numeric values. Only hexadecimal values are supported: they must be prefixed with "$" like "$FF".
+   	Note that absolute addresses are 16-bit while data and offset (branches) are 8-bit.
+    <h3>Data</h3>
+    A data is defined by its name (label), its size (BYTE or WORD) and its initial value.<br>
+    Note that 6502 is a 8-bit processor: WORD has been added for future usage (device controller supporting 16-bit input)
+    Examples: 2 consecutive bytes initialized to zero
+      <pre>
+H1		BYTE	$00
+L1		BYTE	$00
+      </pre>
+    
+    <h3>Directive: ORG</h3>
+    "ORG addr" can be added at any place to force next data or instructions to be loaded at a particular address.
+        <pre>
+     		ORG   $0010
+        VAL	BYTE  $FF
+        	ORG   $0020
+        	LDA   VAL
+        </pre>
+    VAL is stored at $0010, 1st instruction is loaded at $0020
+        	
+  <h2>Documentations</h2>
+    <ul>
+      <li><a href="http://archive.6502.org/datasheets/synertek_programming_manual.pdf">6052 Programming Manual</a> by Synertek used a a reference for developing and testing 6502 support
+      <li><a href="http://www.6502.org/tutorials">A set of tutorials</a>
+      <li><a href="http://www.atarimax.com/jindroush.atari.org/aopc.html">Site by John Picken</a> used as a reference for developing 6052 support
+    </ul>
+  <h2>Examples</h2>
+    <ul>
+      <li><a href="http://skilldrick.github.io/easy6502">"Easy 6502 by Nick Morgan</a>: a web-based simulator
+    </ul>
+</body>
+</html>
