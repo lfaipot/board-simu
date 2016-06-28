@@ -18,6 +18,7 @@ Quick Start Guide
     * click on "Load". Any error will be displayed in the window at the bottom
 * In the "Execution" window
     * click on "Run" or "Step". Adapt the speed while running with the slider
+    * click on "Information" to know more about the board and the processor instructions and directives (in French for Edu1)
 * The "Led" window shows the value written at 0xFF
 
 Notes
