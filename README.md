@@ -10,6 +10,9 @@ With board-simu, you can edit a program, load it into the emulated memory, execu
 
 [Screenshot #1] (https://raw.githubusercontent.com/lfaipot/board-simu/master/doc/board-simu-screenshot1.png)
 
+Prerequisites
+* requires python-qt4
+
 Quick Start Guide
 * launch "board_simulator (or "board_simulator.bat for Windows)
 * In the "Board Simulator" window
