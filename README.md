@@ -26,6 +26,6 @@ Quick Start Guide
 
 Notes
 * Qt Designer used to define GUI (src/Ui/*.py generated from equivalent src/Ui/.ui)
-* examples/arch_xxx contain program used as unit test to check instructions (unit_test will be used later)
-* boards displayed in the "Board" menu are defined into scr/hardware/board/board_decription.cfg. For each board, it defines the processor type, the memory size, a help file (HTML) and the external device connected to (currently only Leds are emulated)
+* examples/arch_xxx contain programs used as unit tests to check instructions (unit_test will be used later)
+* boards displayed in the "Board" menu are defined into src/hardware/board/board_decription.cfg. For each board, it defines the processor type, the memory size, a help file (HTML) and the external device connected to (currently only Leds are emulated)
 
